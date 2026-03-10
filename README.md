@@ -1,4 +1,4 @@
-# Immigration Interview Coach
+# BridgeMate
 
 This is a Flask application that provides an AI‑powered chat interface with
 speech‑to‑text and text‑to‑speech features.  The frontend uses vanilla JavaScript
