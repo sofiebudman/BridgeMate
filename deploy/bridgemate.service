@@ -1,0 +1,40 @@
+# ──────────────────────────────────────────────────────────────
+#  BridgeMate – systemd Service Unit (for Linux servers)
+# ──────────────────────────────────────────────────────────────
+#
+#  Install:
+#    sudo cp deploy/bridgemate.service /etc/systemd/system/
+#    sudo systemctl daemon-reload
+#    sudo systemctl enable --now bridgemate
+#
+#  Logs:
+#    sudo journalctl -u bridgemate -f
+# ──────────────────────────────────────────────────────────────
+
+[Unit]
+Description=BridgeMate Immigration Interview Coach (Gunicorn)
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/bridgemate
+ExecStart=/opt/bridgemate/venv/bin/gunicorn -c gunicorn.conf.py wsgi:app
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+
+# Environment variables – adjust as needed
+Environment="PORT=4000"
+Environment="FLASK_ENV=production"
+# Environment="ELEVEN_LABS_API_KEY=sk_your_key_here"
+# Environment="HF_TOKEN=hf_your_token_here"
+# Environment="STT_PROVIDER=elevenlabs"
+
+# Security hardening
+PrivateTmp=true
+ProtectSystem=full
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

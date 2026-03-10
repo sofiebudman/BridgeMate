@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Immigration Interview Coach</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --teal:     #2d6a5f;
+            --teal-mid: #3d8a7b;
+            --teal-lt:  #e4f0ee;
+            --teal-glow:rgba(45,106,95,0.15);
+            --amber:    #c97c3a;
+            --ink:      #111714;
+            --mid:      #4a5550;
+            --soft:     #8a9490;
+            --bg:       #f2f0eb;
+            --white:    #ffffff;
+            --card:     #ffffff;
+            --border:   #e2ddd6;
+        }
+
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+        }
+
+        /* ── Hero ─────────────────────────────────── */
+        .hero {
+            padding: 4rem 1.5rem 4rem;
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 0.4rem 1rem;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--mid);
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .hero-tag span { color: var(--teal); font-weight: 600; }
+
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.6rem, 7vw, 4rem);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 em {
+            font-style: italic;
+            color: var(--teal);
+        }
+
+        h1 .line2 {
+            display: block;
+            font-style: italic;
+            font-weight: 300;
+  
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--mid);
+            line-height: 1.75;
+            max-width: 480px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Waveform decoration */
+        .wave-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            margin-bottom: 3.5rem;
+            height: 50px;
+        }
+
+        .wave-bar {
+            width: 3px;
+            border-radius: 100px;
+            background: var(--teal);
+            opacity: 0.35;
+            height: var(--h, 20px);
+            animation: wave var(--dur, 1.2s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes wave {
+            0%,100% { height: 6px;  opacity: 0.2; }
+            50%      { height: var(--h, 20px); opacity: 0.6; }
+        }
+
+        /* ── Feature Cards ────────────────────────── */
+        .features {
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .feat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.4rem 1.2rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+        }
+
+        .feat-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: var(--teal-lt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.9rem;
+            color: var(--teal);
+        }
+
+        .feat-card.featured .feat-icon {
+            background: rgba(255,255,255,0.15);
+            color: #fff;
+        }
+
+        .feat-card h3 {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.35rem;
+        }
+
+        .feat-card p {
+            font-size: 0.78rem;
+            color: var(--soft);
+            line-height: 1.55;
+        }
+
+        /* Highlighted voice card */
+        .feat-card.featured {
+            background: var(--teal);
+            border-color: var(--teal);
+        }
+
+        .feat-card.featured h3 { color: #fff; }
+        .feat-card.featured p  { color: rgba(255,255,255,0.7); }
+
+        /* ── Divider ──────────────────────────────── */
+        .divider-line {
+            max-width: 700px;
+            margin: 0 auto 3.5rem;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .divider-line::before,
+        .divider-line::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .divider-line span {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--soft);
+            white-space: nowrap;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        /* ── Form ─────────────────────────────────── */
+        .form-wrap {
+            max-width: 460px;
+            margin: 0 auto;
+            padding: 0 1.5rem 5rem;
+            animation: fadeUp 0.5s 0.4s ease both;
+        }
+
+        .form-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.2rem 2rem;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+        }
+
+        .form-card-header {
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+
+        .form-card-header h2 {
+            font-family: 'Fraunces', serif;
+            font-weight: 300;
+            font-size: 1.5rem;
+            color: var(--ink);
+            margin-bottom: 0.35rem;
+        }
+
+        .form-card-header p {
+            font-size: 0.85rem;
+            color: var(--soft);
+        }
+
+        .field {
+            margin-bottom: 1.2rem;
+        }
+
+        .field label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--soft);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.45rem;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .field input::placeholder { color: #bbb; }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: var(--teal);
+            background: var(--white);
+        }
+
+        .select-wrap { position: relative; }
+        .select-wrap::after {
+            content: '';
+            position: absolute;
+            right: 1rem; top: 50%;
+            transform: translateY(-50%);
+            width: 12px; height: 7px;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a9490' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.95rem;
+            margin-top: 0.5rem;
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            letter-spacing: 0.01em;
+        }
+
+        .btn:hover {
+            background: var(--teal-mid);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px var(--teal-glow);
+        }
+
+        .btn:active { transform: translateY(0); box-shadow: none; }
+
+        .privacy {
+            margin-top: 1.1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #bbb;
+        }
+
+        /* ── Animations ───────────────────────────── */
+        @keyframes wave {
+            0%,100% { transform: scaleY(0.2); opacity: 0.2; }
+            50%      { transform: scaleY(1);   opacity: 0.6; }
+        }
+
+        /* ── Responsive ───────────────────────────── */
+        @media (max-width: 600px) {
+            .features { grid-template-columns: 1fr 1fr; }
+            .feat-card:last-child { grid-column: span 2; }
+            h1 { font-size: 2.4rem; }
+        }
+
+        @media (max-width: 420px) {
+            .features { grid-template-columns: 1fr; }
+            .feat-card:last-child { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-tag">✦ Free to use &nbsp;·&nbsp <span>No account needed</span></div>
+    <h1>
+        BridgeMate<br>
+        <span class="line2">immigration agent</span>
+    </h1>
+    <p class="hero-desc">
+        A conversational AI coach that answers your questions, walks you through the process, and lets you practice real interviews — out loud, in your language.
+    </p>
+
+    <!-- Animated waveform -->
+    <div class="wave-row" aria-hidden="true">
+        <div class="wave-bar" style="--h:8px;  --dur:1.1s; --delay:0.0s"></div>
+        <div class="wave-bar" style="--h:14px; --dur:1.3s; --delay:0.1s"></div>
+        <div class="wave-bar" style="--h:22px; --dur:1.0s; --delay:0.2s"></div>
+        <div class="wave-bar" style="--h:30px; --dur:1.2s; --delay:0.05s"></div>
+        <div class="wave-bar" style="--h:38px; --dur:0.9s; --delay:0.15s"></div>
+        <div class="wave-bar" style="--h:44px; --dur:1.1s; --delay:0.25s"></div>
+        <div class="wave-bar" style="--h:38px; --dur:1.3s; --delay:0.0s"></div>
+        <div class="wave-bar" style="--h:30px; --dur:1.0s; --delay:0.1s"></div>
+        <div class="wave-bar" style="--h:22px; --dur:1.2s; --delay:0.2s"></div>
+        <div class="wave-bar" style="--h:14px; --dur:1.1s; --delay:0.05s"></div>
+        <div class="wave-bar" style="--h:8px;  --dur:0.9s; --delay:0.15s"></div>
+    </div>
+</section>
+
+<!-- Feature Cards -->
+<div class="features">
+    <div class="feat-card">
+        <div class="feat-icon">
+            <!-- Chat bubble -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+        </div>
+        <h3>Ask anything</h3>
+        <p>Get clear answers on visas, documents, timelines, and what to expect.</p>
+    </div>
+    <div class="feat-card featured">
+        <div class="feat-icon">
+            <!-- Microphone -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="2" width="6" height="11" rx="3"/>
+                <path d="M5 10a7 7 0 0 0 14 0"/>
+                <line x1="12" y1="19" x2="12" y2="22"/>
+                <line x1="9" y1="22" x2="15" y2="22"/>
+            </svg>
+        </div>
+        <h3>Voice practice</h3>
+        <p>Speak your answers aloud. The AI plays the interviewer and gives real feedback.</p>
+    </div>
+    <div class="feat-card">
+        <div class="feat-icon">
+            <!-- Globe -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+        </div>
+        <h3>Your language</h3>
+        <p>Practice in 10+ languages. No barrier to preparation.</p>
+    </div>
+</div>
+
+<!-- Divider -->
+<div class="divider-line">
+    <span>Ready to begin?</span>
+</div>
+
+<!-- Form -->
+<div class="form-wrap">
+    <div class="form-card">
+        <div class="form-card-header">
+            <h2>Let's get you prepared</h2>
+            <p>Takes 10 seconds. No sign-up required.</p>
+        </div>
+
+        <form id="welcomeForm" onsubmit="goToChat(event)" novalidate>
+
+            <div class="field">
+                <label for="userName">Your name</label>
+                <input
+                    type="text"
+                    id="userName"
+                    placeholder="First name"
+                    required
+                    autocomplete="given-name"
+                    maxlength="40"
+                />
+            </div>
+
+            <div class="field">
+                <label for="userLanguage">Preferred language</label>
+                <div class="select-wrap">
+                    <select id="userLanguage" required>
+                        <option value="">Choose a language…</option>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="de">Deutsch</option>
+                        <option value="it">Italiano</option>
+                        <option value="pt">Português</option>
+                        <option value="ru">Русский</option>
+                        <option value="ja">日本語</option>
+                        <option value="zh">中文</option>
+                        <option value="ko">한국어</option>
+                        <option value="ar">العربية</option>
+                        <option value="hi">हिन्दी</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="userCountry">Country of origin</label>
+                <div class="select-wrap">
+                    <select id="userCountry" required>
+                        <option value="">Where are you immigrating from</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="Spain">Spain</option>
+                        <option value="France">France</option>
+                        <option value="German">Germany</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Japan">Japan</option>
+                        <option value="China">China</option>
+                        <option value="India">India</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Russia">Russia</option>
+                        <option value="South Korea">South Korea</option>
+                    </select>
+                </div>
+            </div>
+
+         
+
+            <button type="submit" class="btn">
+                Start practicing →
+            </button>
+
+        </form>
+
+        <p class="privacy">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:3px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Nothing is saved · Private & confidential
+        </p>
+    </div>
+</div>
+
+<script>
+    function goToChat(e) {
+        e.preventDefault();
+        const name = document.getElementById('userName').value.trim();
+        const lang = document.getElementById('userLanguage').value;
+        const country = document.getElementById('userCountry').value;
+        if (!name) { document.getElementById('userName').focus(); return; }
+        if (!lang) { document.getElementById('userLanguage').focus(); return; }
+        if (!country) { document.getElementById('userCountry').focus(); return; }
+        localStorage.setItem('userName', name);
+        localStorage.setItem('userLanguage', lang);
+        localStorage.setItem('userCountry', country);
+        window.location.href = '/chat?lang=' + encodeURIComponent(lang) + '&name=' + encodeURIComponent(name) + '&country=' + encodeURIComponent(country);
+    }
+
+    const saved = localStorage.getItem('userName');
+    if (saved) document.getElementById('userName').value = saved;
+    const savedLang = localStorage.getItem('userLanguage');
+    if (savedLang) document.getElementById('userLanguage').value = savedLang;
+    const savedCountry = localStorage.getItem('userCountry');
+    if (savedCountry) document.getElementById('userCountry').value = savedCountry;
+</script>
+
+</body>
+</html>

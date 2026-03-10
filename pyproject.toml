@@ -1,0 +1,16 @@
+[project]
+name = "bisv"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "elevenlabs>=2.38.1",
+    "faiss-cpu>=1.13.2",
+    "flask>=3.1.3",
+    "librosa>=0.11.0",
+    "openai>=2.26.0",
+    "pypdf>=6.7.5",
+    "requests>=2.30.0",
+    "sentence-transformers>=5.2.3",
+]
