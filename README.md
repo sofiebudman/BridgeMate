@@ -1,19 +1,20 @@
 # BridgeMate
-<img width="996" height="564" alt="Screenshot 2026-03-09 at 5 14 30 PM" src="https://github.com/user-attachments/assets/fc69a582-1270-482e-962e-43d62fb7e55f" />
+<img width="498" height="282" alt="Screenshot 2026-03-09 at 5 14 30 PM" src="https://github.com/user-attachments/assets/fc69a582-1270-482e-962e-43d62fb7e55f" />
 
 
-BridgMate is a Flask application that provides an AI‑powered chat interface with
+**BridgMate** is a Flask application that provides an AI‑powered chat interface with
 speech‑to‑text and text‑to‑speech features specializing in US Immigration policy. BridgeMate helps users prepare for interviews by simulating real-world scenarios, offering personalized guidance, and generating step-by-step immigration roadmaps. It combines AI, automatic speech recognition, RAG, and resources to make navigating the immigration process clearer and more manageable.
 
 Built with Python, Flask, JavaScript, HTML, CSS. 
+
+
+## Running
 
 > ⚠️ **Important**
 > The web UI must be loaded via the Flask server (e.g. `http://localhost:4000`).
 > Opening `index.html` directly from the file system will lead to errors such as
 > "Invalid URL" when you try to record audio, because the browser cannot resolve
 > the relative API paths.
-
-## Running
 
 ```bash
 uv venv .venv
